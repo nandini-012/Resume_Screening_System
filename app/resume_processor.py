@@ -1,5 +1,5 @@
 from parser import extract_text_from_pdf, extract_text_from_pdf
-from extractor import extract_skills,extract_name
+from extractor import extract_section, extract_skills,extract_name
 
 def extract_name(text):
     lines = text.split("\n")
@@ -29,3 +29,27 @@ resume_data = {
 }
 
 print(resume_data)
+
+education = extract_section(
+    resume_text,
+    "EDUCATION",
+    "PROFESSIONAL EXPERIENCE"
+)
+
+print(education)
+
+experience = extract_section(
+    resume_text,
+    "PROFESSIONAL EXPERIENCE",
+    "PROJECTS"
+)
+
+print(experience)
+
+projects = extract_section(
+    resume_text,
+    "PROJECTS",
+    "TECHNICAL SKILLS"
+)
+
+print(projects)

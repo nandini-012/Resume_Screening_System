@@ -78,3 +78,19 @@ def extract_name(text):
             return ent.text
 
     return rule_based_name(text)
+
+def extract_section(text, start_heading, end_heading):
+    
+    text_upper = text.upper()
+
+    start = text_upper.find(start_heading)
+
+    if start == -1:
+        return ""
+
+    end = text_upper.find(end_heading, start)
+
+    if end == -1:
+        return text[start:]
+
+    return text[start:end]
