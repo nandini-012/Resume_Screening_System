@@ -1,4 +1,3 @@
-from parser import extract_text_from_pdf
 import spacy
 nlp = spacy.load("en_core_web_sm")
 
@@ -27,20 +26,6 @@ SKILLS = [
     "mongodb"
 ]
 
-def extract_skills(text):
-    found_skills = []
-
-    text = text.lower()
-
-    for skill in SKILLS:
-        if skill in text:
-            found_skills.append(skill)
-
-    return found_skills
-
-resume_text = extract_text_from_pdf(r"C:\Users\hplap\Downloads\NANDINI_Resume_Job_Latest.pdf")
-skills = extract_skills(resume_text)
-print(skills)
 
 
 
@@ -71,13 +56,32 @@ def rule_based_name(text):
 
 def extract_name(text):
 
-    doc = nlp(text)
+    top_text = "\n".join(
+        text.split("\n")[:10]
+    )
+
+
+    doc = nlp(top_text)
 
     for ent in doc.ents:
         if ent.label_ == "PERSON":
             return ent.text
 
     return rule_based_name(text)
+
+
+def extract_skills(text):
+    found_skills = []
+
+    text = text.lower()
+
+    for skill in SKILLS:
+        if skill in text:
+            found_skills.append(skill)
+
+    return found_skills
+
+
 
 def extract_section(text, start_heading, end_heading):
     

@@ -1,34 +1,13 @@
-from parser import extract_text_from_pdf, extract_text_from_pdf
+import json
+from parser import extract_text_from_pdf
 from extractor import extract_section, extract_skills,extract_name
+from ats_analyser import analyze_resume
 
-def extract_name(text):
-    lines = text.split("\n")
+resume_text = extract_text_from_pdf(r"C:\Users\hplap\Downloads\NANDINI_Resume_Job_Latest.pdf")
 
-    for line in lines:
-        line = line.strip()
+name = extract_name(resume_text)
 
-        if line:
-            return line
-
-    return "Unknown"
-
-
-resume_text = extract_text_from_pdf(r"C:\\Users\\hplap\\Downloads\\NANDINI_Resume_Job_Latest.pdf")
-
-
-
-lines = resume_text.split("\n")
-
-for i, line in enumerate(lines[:20]):
-    print(i, ":", line)
-    
-    
-resume_data = {
-    "name": extract_name(resume_text),
-    "skills": extract_skills(resume_text)
-}
-
-print(resume_data)
+skills = extract_skills(resume_text)
 
 education = extract_section(
     resume_text,
@@ -36,15 +15,11 @@ education = extract_section(
     "PROFESSIONAL EXPERIENCE"
 )
 
-print(education)
-
 experience = extract_section(
     resume_text,
     "PROFESSIONAL EXPERIENCE",
     "PROJECTS"
 )
-
-print(experience)
 
 projects = extract_section(
     resume_text,
@@ -52,5 +27,38 @@ projects = extract_section(
     "TECHNICAL SKILLS"
 )
 
-print(projects)
+resume_data = {
+    "name": name,
+    "skills": skills,
+    "education": education,
+    "experience": experience,
+    "projects": projects
+}
 
+
+
+
+
+job_description = """
+Looking for Machine Learning Engineer.
+
+Skills Required:
+
+Python
+Machine Learning
+Docker
+AWS
+"""
+
+jd_skills = extract_skills(job_description)
+report = analyze_resume(
+    resume_data,
+    jd_skills
+)
+
+print(
+    json.dumps(
+        report,
+        indent=4
+    )
+)

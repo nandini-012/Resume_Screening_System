@@ -18,26 +18,4 @@ def match_skills(resume_skills, jd_skills):
         "score": round(score, 2),
         "matched": matched,
         "missing": missing
-    }
-    
-    
-resume_skills = [
-    "python",
-    "machine learning",
-    "tensorflow",
-    "git"
-]
-
-jd_skills = [
-    "python",
-    "machine learning",
-    "docker",
-    "sql"
-]
-
-result = match_skills(
-    resume_skills,
-    jd_skills
-)
-
-print(result)
+        }
