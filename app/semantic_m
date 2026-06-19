@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from parser import extract_text_from_pdf
+from app.parser import extract_text_from_pdf
 
 
 SKILL_ALIASES = {

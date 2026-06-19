@@ -1,7 +1,7 @@
 import json
-from parser import extract_text_from_pdf
-from extractor import extract_section, extract_skills,extract_name
-from ats_analyser import analyze_resume
+from app.parser import extract_text_from_pdf
+from app.extractor import extract_section, extract_skills,extract_name
+from app.ats_analyser import analyze_resume
 
 resume_text = extract_text_from_pdf(r"C:\Users\hplap\Downloads\NANDINI_Resume_Job_Latest.pdf")
 
@@ -46,7 +46,7 @@ Skills Required:
 
 Python
 Machine Learning
-Docker
+Dockerṇ
 AWS
 """
 
