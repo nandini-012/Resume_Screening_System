@@ -1,6 +1,5 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from app.parser import extract_text_from_pdf
 
 
 SKILL_ALIASES = {
@@ -17,7 +16,6 @@ def normalize_text(text):
         text = text.replace(short, full)
 
     return text
-
 
 
 def calculate_similarity(resume_text, jd_text):
@@ -46,22 +44,3 @@ def calculate_similarity(resume_text, jd_text):
         similarity[0][0] * 100,
         2
     )
-    
-resume = """
-Python
-Machine Learning
-TensorFlow
-FastAPI
-"""
-
-jd = """
-Looking for ML Engineer
-with Python and FastAPI skills.
-"""
-
-print(
-    calculate_similarity(
-        resume,
-        jd
-    )
-)

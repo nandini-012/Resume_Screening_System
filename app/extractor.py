@@ -13,17 +13,20 @@ HEADINGS = {
 
 SKILLS = [
     "python",
-    "sql",
     "machine learning",
-    "deep learning",
     "tensorflow",
     "pytorch",
-    "fastapi",
     "docker",
     "aws",
+    "fastapi",
+    "flask",
+    "sql",
+    "mongodb",
     "git",
-    "react",
-    "mongodb"
+    "linux",
+    "numpy",
+    "pandas",
+    "scikit-learn"
 ]
 
 

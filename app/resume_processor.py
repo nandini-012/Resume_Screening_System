@@ -53,7 +53,9 @@ AWS
 jd_skills = extract_skills(job_description)
 report = analyze_resume(
     resume_data,
-    jd_skills
+    jd_skills,
+    job_description
+    
 )
 
 print(
@@ -62,3 +64,4 @@ print(
         indent=4
     )
 )
+

@@ -1,9 +1,11 @@
 from app.matcher import match_skills
+from app.scoring_engine import (calculate_overall_score)
 
 
 def analyze_resume(
     resume_data,
-    jd_skills
+    jd_skills,
+    job_description
 ):
 
     skill_result = match_skills(
@@ -16,8 +18,15 @@ def analyze_resume(
         "candidate": resume_data["name"],
 
         "overall_score":
-        skill_result["score"],
-
+        calculate_overall_score(
+            skill_result["matched"],
+            len(jd_skills),
+            resume_data["projects"],
+            resume_data["experience"],
+            resume_data["education"],
+            job_description
+        ),
+        
         "matched_skills":
         skill_result["matched"],
 
